@@ -1,37 +1,18 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
-
-
 $(function () {
+
+  // Adding event listener to save buttons 
+
+  var saveBtns = document.querySelectorAll('.saveBtn');
+
+  saveBtns.forEach(button => {
+    button.addEventListener('click', function() {
+      var description = this.parentElement.querySelector('.description').value;
   
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
+      var timeBlock = this.parentElement.id;
   
-  function renderDesc() {
-    var userInput = localStorage.getItem('userInput')
-
-    if (!userInput) {
-      return;
-    }
-
-    $('textarea').textContent = userInput
-  }
-  
-  // var saveBtn = $('.saveBtn');
-  // saveBtn.addEventListener('click', function(event) {
-  //   event.preventDefault();
-
-  //   var userInput = $('.description').value
-  //   localStorage.setItem('userInput', userInput)
-  //   renderDesc();
-  // })
-
+      localStorage.setItem(timeBlock, description);
+    });
+  });
 
   
   // Apply the past, present, or future class to each time block 
@@ -54,17 +35,18 @@ $(function () {
 
 
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corres
-  
-  // Store data
-  var userInput = localStorage.getItem('userInput');
+  // Get any user input that was saved in localStorage and set
+  // the values of the corressponding text area
 
-  if (!userInput) {
-    return;
-  }
+  document.querySelectorAll('.time-block').forEach(timeBlock => {
+    var timeID = timeBlock.id;
+    var userInput = localStorage.getItem(timeID);
 
-  $('textarea').textContent = userInput
+    if (userInput) {
+
+      timeBlock.querySelector('.description').value = userInput;
+   }
+});
 
   // Display the current date in the header of the page.
   var today = dayjs();
