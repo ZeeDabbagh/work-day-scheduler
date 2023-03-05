@@ -36,8 +36,6 @@ $(function () {
     }
   }
 
-
-
   // Get any user input that was saved in localStorage and set
   // the values of the corressponding text area
 
