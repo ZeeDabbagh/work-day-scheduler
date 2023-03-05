@@ -20,15 +20,18 @@ $(function () {
   var timeBlock = document.getElementsByClassName('time-block');
   var textAreaEl = $('textarea');
   var currentTime = dayjs().format('H');
-
+  
   for (var i = 0; i < timeBlock.length; i++) {
-    if (parseInt(timeBlock[i].id) < currentTime) {
+    var idName = timeBlock[i].id;
+    idName = idName.split('-');
+    idName = idName[1]
+    if (parseInt(idName) < currentTime) {
       textAreaEl[i].classList.add('past');
     } 
-    else if (parseInt(timeBlock[i].id) == currentTime) {
+    else if (parseInt(idName) == currentTime) {
       textAreaEl[i].classList.add('present');
     }
-    else if (parseInt(timeBlock[i].id) > currentTime) {
+    else if (parseInt(idName) > currentTime) {
       textAreaEl[i].classList.add('future');
     }
   }
