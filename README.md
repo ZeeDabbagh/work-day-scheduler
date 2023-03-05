@@ -21,7 +21,7 @@ Add your events to the corresponding time block and click the save button. Your 
 Please refer to the LICENSE in the repo.
 ```
 ## Screenshot
-
+![DeployedSS](./assets/images/deployedSS.png)
 ## Link to Deployed Web App
-
+https://zeedabbagh.github.io/work-day-scheduler/
 
